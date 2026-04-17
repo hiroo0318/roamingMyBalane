@@ -302,3 +302,15 @@
   word-break: break-word;
   max-width: 60%;
 }
+
+/* 20260417 잔액조회 리스트 총 등록금액 문구 삭제 높이 보정 */
+.balance-list-area .balance-item .left-box {
+  min-height: 3.8rem;
+}
+
+.balance-list-area .balance-item .product-name {
+  display: flex;
+  align-items: center;
+  min-height: 3.8rem;
+  margin-bottom: 0;
+}
