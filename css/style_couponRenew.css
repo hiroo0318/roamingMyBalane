@@ -1,0 +1,304 @@
+/* ===========================================================
+   T로밍쿠폰 구매내역 3안 (2025.11)
+   - 카드 썸네일 + 주문정보 상단 표시 + 팝업 공통 구조
+=========================================================== */
+
+/* ------------------------------
+   기본 레이아웃
+--------------------------------*/
+.coupon-list-area {
+  padding: 20px 16px;
+  background: #fff;
+}
+.coupon-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+}
+.coupon-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* ------------------------------
+   카드 상단 : 구매일 / 주문번호 / 상세보기 버튼
+--------------------------------*/
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef0f3;
+  background: #f9fafb;
+}
+.card-top .left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #666;
+}
+.card-top .left .bar {
+  opacity: 0.5;
+}
+
+.card-top .right {
+  font-size: 12px;
+}
+.card-top .right .btn-detail {
+  background: none;
+  color: #666;
+  border: none;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0;
+  text-decoration: underline; /* ✅ 밑줄 표시 */
+  cursor: pointer;
+}
+.card-top .right .btn-detail:hover {
+  text-decoration: none; /* 마우스 오버 시 밑줄 제거 효과 */
+}
+
+/* ------------------------------
+   카드 본문 : 썸네일 + 쿠폰 정보
+--------------------------------*/
+.card-row {
+  display: flex;
+  gap: 10px;
+  padding: 12px;
+  align-items: center; /* ✅ 수직 정렬 */
+}
+.card-thumb {
+  width: 70px; /* ✅ 기존 92px → 70px 축소 */
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.card-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.card-info {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px; /* ✅ 상단 여백 약간 조정 */
+}
+.coupon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.badge {
+  background: #178bce;
+  color: #fff;
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-size: 11px;
+}
+.status {
+  color: #4130df;
+  font-size: 12px;
+  font-weight: 600;
+  width: 70px;
+  text-align: right;
+}
+.coupon-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  margin: 2px 0;
+}
+.coupon-desc {
+  font-size: 12.5px;
+  color: #555;
+  line-height: 1.4;
+}
+.coupon-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: #777;
+  margin-top: 3px;
+}
+
+/* ===========================================================
+   쿠폰 고객센터 문의 버튼 (기존 btn 영향 완전 차단)
+   2025.11 - 3안 기준
+=========================================================== */
+.cs-center-area {
+  text-align: center;
+  padding: 4px 16px 16px;
+}
+
+.helpdesk-btn {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  background: #4130df;
+  color: #fff !important;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px 0;
+  border-radius: 28px;
+  text-align: center;
+  text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: background .2s;
+}
+
+.helpdesk-btn:hover {
+  background: #2e20c9;
+}
+
+
+/* ===========================================================
+   더보기 버튼 (기존 btn-more 영향 완전 차단)
+=========================================================== */
+.more-list-btn {
+  display: block;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 12px 0;
+  font-size: 14px;
+  color: #444 !important;
+  /* border-radius: 6px; */
+  /* margin: 12px 0 20px; */
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.more-list-btn:hover {
+  background: #f2f2f2;
+}
+
+/* ===========================================================
+   구매내역 상세 레이어 내 "주문정보 / 주문상품" 구조
+   (2025.11 3안 기준)
+=========================================================== */
+.wrap-area.ui-dtl {
+  padding: 20px 16px 20px;
+  background: #fff;
+}
+
+/* 섹션 타이틀 */
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #000;
+}
+
+/* 주문정보 리스트 */
+.order-table .bothside-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #000;
+  /* border-bottom: 1px solid #f3f3f3; */
+}
+.order-table .bothside-list:last-child {
+  border-bottom: none;
+}
+.order-table dt {
+  color: #555;
+  width: 40%;
+}
+.order-table dd {
+  text-align: right;
+  width: 60%;
+  color: #000;
+}
+
+/* 강조 스타일 */
+.link-text {
+  color: #4130df;
+  /* text-decoration: underline; */
+  cursor: pointer;
+}
+.highlight {
+  color: #4130df;
+  /* font-weight: 700; */
+  cursor: pointer;
+}
+
+/* 주문상품 리스트 */
+.order-item-section {
+  margin-top: 24px;
+}
+.coupon-item {
+  padding: 6px 0 10px;
+  border-bottom: 1px solid #eee;
+}
+.coupon-item:last-child {
+  border-bottom: none;
+}
+
+/* 쿠폰 버튼 */
+.coupon-register {
+  background: #4130df;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  margin-top: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+.coupon-register:hover {
+  background: #2e20c9;
+}
+.coupon-register.disabled,
+.coupon-register:disabled {
+  background: #ccc;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ============================
+   배송정보 (신규)
+============================ */
+
+.order-delivery-section {
+  margin-top: 24px;
+}
+
+.order-delivery-section .section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #000;
+}
+
+.order-delivery-section .bothside-list {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #000;
+}
+
+.order-delivery-section .bothside-list dt {
+  font-weight: 600;
+  color: #333;
+}
+
+.order-delivery-section .bothside-list dd {
+  text-align: right;
+  color: #000;
+  word-break: break-word;
+  max-width: 60%;
+}
